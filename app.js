@@ -50,10 +50,10 @@ const showModal = (text) => {
 const checkWinner = () => {
     if (userScore === 5) {
         showModal("Congratulations! You win the game!");
-        resetGame();
+        // resetGame();
     } else if (compScore === 5) {
         showModal("Oops! Computer wins the game. Try again!");
-        resetGame();
+        // resetGame();
     }
 };
 
