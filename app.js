@@ -61,8 +61,10 @@ const resetGame = () => {
     userScore = 0;
     compScore = 0;
     totalClicks = 0;
-    userScorePara.innerText = userScore;
-    compScorePara.innerText = compScore;
+    userScorePara.innerText = "0";
+    compScorePara.innerText = "0";
+    msg.innerText = "Play your move"
+    msg.style.backgroundColor = "#081b31"
 };
 
 const playGame = (userChoice) => {
@@ -95,7 +97,7 @@ choices.forEach((choice) => {
 });
 
 document.getElementById('modal').querySelector('button').addEventListener("click", () => {
+    closeModal();
     resetGame();
-    window.location.reload();
 });
 
