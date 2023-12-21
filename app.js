@@ -95,6 +95,8 @@ choices.forEach((choice) => {
 });
 
 document.getElementById('modal').querySelector('button').addEventListener("click", () => {
+    closeModal();
+    resetGame();
     window.location.reload();
 });
 
