@@ -1,5 +1,6 @@
 let userScore = 0;
 let compScore = 0;
+let totalClicks = 0;
 
 const choices = document.querySelectorAll(".choice");
 const msg = document.querySelector("#msg")
@@ -34,6 +35,36 @@ const showWinner = (userWin, userChoice, compChoice) => {
     }
 };
 
+//alert box
+const closeModal = () => {
+    document.getElementById('modal').style.display = 'none';
+    document.getElementById('modal-overlay').style.display = 'none';
+};
+//alert box
+const showModal = (text) => {
+    document.getElementById('modal-text').innerText = text;
+    document.getElementById('modal').style.display = 'block';
+    document.getElementById('modal-overlay').style.display = 'block';
+};
+
+const checkWinner = () => {
+    if (userScore === 5) {
+        showModal("Congratulations! You win the game!");
+        resetGame();
+    } else if (compScore === 5) {
+        showModal("Oops! Computer wins the game. Try again!");
+        resetGame();
+    }
+};
+
+const resetGame = () => {
+    userScore = 0;
+    compScore = 0;
+    totalClicks = 0;
+    userScorePara.innerText = userScore;
+    compScorePara.innerText = compScore;
+};
+
 const playGame = (userChoice) => {
     // console.log(`User Choics = ${userChoice}`);
     const compChoice = genCompChoice();
@@ -51,6 +82,8 @@ const playGame = (userChoice) => {
             userWin = compChoice === "rock" ? false : true;
         }
         showWinner(userWin, userChoice, compChoice);
+        totalClicks++;
+        checkWinner();
     }
 };
 
@@ -59,5 +92,9 @@ choices.forEach((choice) => {
         const userChoice = choice.getAttribute("id");
         playGame(userChoice);
     });
+});
+
+document.getElementById('modal').querySelector('button').addEventListener("click", () => {
+    window.location.reload();
 });
 
